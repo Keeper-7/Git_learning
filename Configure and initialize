@@ -1,0 +1,115 @@
+Configure Git
+
+In Cloud Shell, to double-check that Git is installed, type git --version:
+git --version
+
+Output:
+---------------------
+nandini_bhargava [ ~ ]$ git --version
+git version 2.45.4
+
+
+
+To configure Git, you must define some global variables: user.name and user.email. Both are required for you to make commits.
+Set your name in Cloud Shell with the following command. Replace <USER_NAME> with the user name you want to use.
+git config --global user.name "<USER_NAME>"
+Now, use this command to create a user.email configuration variable, replacing <USER_EMAIL> with your e-mail address:
+git config --global user.email "<USER_EMAIL>"
+Run the following command to check that your changes worked:
+git config --list
+
+Output:
+---------------------
+nandini_bhargava [ ~ ]$ git config --global user.name "Nandini"
+nandini_bhargava [ ~ ]$ git config --global user.email "Nandinibhargava77@gmail.com"
+nandini_bhargava [ ~ ]$ git config --list
+http.sslcapath=/etc/ssl/certs
+user.email=Nandinibhargava77@gmail.com
+user.name=Nandini
+
+
+
+Set up your Git repository
+Git works by checking for changes to files within a certain folder.
+We'll create a folder to serve as our working tree (project directory) and let Git know about it, so it can start tracking changes. 
+We tell Git to start tracking changes by initializing a Git repository into that folder.
+
+Start by creating an empty folder for your project, and then initialize a Git repository inside it.
+
+
+1.Create a folder named Cats. This folder will be the project directory, also called the working tree. 
+The project directory is where all files related to your project are stored.
+In this exercise, it's where your website and the files that create the website and its contents are stored.
+
+mkdir Cats
+
+## already created a directory by name of Cats so to remove the directory present did git rm Cats
+
+2.Change to the project directory by using the cd command:
+
+cd Cats
+
+3.Now, initialize your new repository and set the name of the default branch to main:
+If you're running Git version 2.28.0 or later, use the following command:
+
+git init --initial-branch=main
+
+Or use the following command:
+
+git init -b main
+
+For earlier versions of Git, use these commands:
+
+git init
+git checkout -b main
+
+4.Now, use a git status command to show the status of the working tree:
+
+git status
+
+5.Use an ls command to show the contents of the working tree:
+
+ls -a
+
+
+output:
+---------------------
+nandini_bhargava [ ~ ]$ mkdir Cats
+mkdir: cannot create directory ‘Cats’: File exists
+nandini_bhargava [ ~ ]$ git rm Cats
+fatal: not a git repository (or any parent up to mount point /home)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+nandini_bhargava [ ~ ]$ rm Cats
+rm: cannot remove 'Cats': Is a directory
+nandini_bhargava [ ~ ]$ rmdir Cats
+nandini_bhargava [ ~ ]$ mkdir Cats
+nandini_bhargava [ ~ ]$ cd Cats
+nandini_bhargava [ ~/Cats ]$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint:   git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint:   git branch -m <name>
+Initialized empty Git repository in /home/nandini_bhargava/Cats/.git/
+nandini_bhargava [ ~/Cats ]$ git init -b main
+warning: re-init: ignored --initial-branch=main
+Reinitialized existing Git repository in /home/nandini_bhargava/Cats/.git/
+nandini_bhargava [ ~/Cats ]$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+nandini_bhargava [ ~/Cats ]$ ls -a
+.  ..  .git
+
+
+Confirm that the directory contains a subdirectory named .git. (Using the -a option with ls is important because Linux normally hides file and directory names that start with a period.) This folder is the Git repository—the directory in which Git stores metadata and history for the working tree.
+
+You typically don't do anything with the .git directory directly. Git updates the metadata there as the status of the working tree changes to keep track of what's changed in your files. This directory is hands-off for you, but it's incredibly important to Git.
+
